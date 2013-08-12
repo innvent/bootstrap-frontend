@@ -1,19 +1,43 @@
-///*
-// * Import mixins and helpers
-// */
-@import 'mixins/helpers';
-@import 'mixins/mixins';
+/*  Imports
+   ========================================================================== */
+
+@charset 'UTF-8';
+
+/*
+*     Author:        
+*     Github:       
+
+*     Project:
+*     Star in:
+*/
+
+
+/* Variables */
+@import 'variables';
+
+
+/* Useful Mixins */
+@import 'lib/helpers';
+@import 'lib/mixins';
+
+
+/* Icons */
 @import 'icons/font-icons';
 
-///*
-// * Use normalize, reset and/or HTML5 Boiler Plate's CSS rules.
-// */
 
-.normalize();
-//.reset();
-//.h5bp();
+/* Custom Styles */
+@import 'modules';
+@import 'structure';
+@import 'forms';
+@import 'types';
+@import 'pages';
 
-///*
-// * Fonts
-// */
-@import 'custom/fonts';
+
+/* Media Queries */
+@import 'media-queries';
+
+
+/* Ie Styles */
+@import 'ie';
+
+
