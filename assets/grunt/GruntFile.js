@@ -1,27 +1,82 @@
-module.exports = function(grunt) {
-     var project_files = [
-            '../javascripts/custom/*.js'
-        ],
-        plugins_files = [
-            '../javascripts/plugins/*.js'
-        ],
-        uglify_files = plugins_files.concat(project_files);
+/*!
+ * Project Gruntfile
+ */
 
-    // Project configuration.
-    grunt.initConfig({
-        pkg: grunt.file.readJSON('package.json'),
+'use strict';
+
+module.exports = function( grunt ) {
+
+
+    var appConfig = {
+        dirs: {
+            js:   "../javascripts",
+            less: "../stylesheets/less",
+            css:  "../stylesheets",
+            img:  "../images"
+        },
+        // Metadata
+        pkg: grunt.file.readJSON("package.json"),
+        banner :'/*  \n '+
+                '*   Project: <%= pkg.name %> - version <%= pkg.version %> \n '+
+                '*   Description: <%= pkg.description %> \n '+
+                '*   Repository: <%= pkg.repository %> \n '+
+                '*   Author: <%= pkg.author.name %> \n '+
+                '*   Github: <%= pkg.author.github %> \n '+
+                '*   Start in: <%= pkg.startin %> \n '+
+                '*   Last Update: <%= grunt.template.today("dd/mm/yyyy") %> \n '+
+                '*/ \n',
+
+        // Projects variables
+        // Config task here
+        // Watch task
+        watch: {
+            options: {
+                livereload: true
+            },
+            js: {
+                files: [
+                    "<%= dirs.js %>/**/*.js",
+                    "!<%= dirs.js %>/lib/*.js"
+                ],
+                tasks: ["uglify", "jshint"]
+            },
+            less: {
+                files:  [
+                    '<%= dirs.less %>/**/*.less',
+                    '<%= dirs.less %>/*.less'
+                ],
+                tasks: "less"
+            },
+            html: {
+                files: "/*.html"
+            }
+        },
+        // Less compile task
         less: {
             site: {
                 files: {
-                    '../stylesheets/custom/style.css': '../stylesheets/less/imports.less'
+                    '<%= dirs.css %>/style.css': '<%= dirs.less %>/imports.less'
                 },
                 options: {
                     //yuicompress: true
                 }
             }
         },
+        // livereload task
+        connect: {
+            server: {
+                options: {
+                    port: 9000,
+                    base: ".",
+                    hostname: "localhost",
+                    livereload: true,
+                    open: true
+                }
+            }
+        },
+
+        // jshint task
         jshint: {
-            files: project_files,
             options: {
                 globals: {
                     jQuery: true,
@@ -32,45 +87,38 @@ module.exports = function(grunt) {
                 expr: true
             }
         },
+        // uglify task
         uglify: {
             options: {
-                banner: '/*! <%= pkg.projectName %> - v<%= pkg.version %> - by <%= pkg.developers %> - <%= grunt.template.today("dd/mm/yyyy") %> */\n',
-                mangle: {
-                    except: ['jQuery', 'Backbone']
-                }
+                banner: "<%= banner %>",
+                mangle: false
             },
-            js: {
-                options: {
-                    beautify: true
-                },
+            dist: {
                 files: {
-                    '../javascripts/site.js': uglify_files
+                    "<%= dirs.js %>/site.min.js": [
+                    "<%= dirs.js %>/custom/*.js"
+                    ],
+                    "<%= dirs.js %>/plugins.min.js": [
+                    "<%= dirs.js %>/plugins/*.js"
+                    ]
                 }
-            }
-        },
-        watch: {
-            scripts: {
-                files: [
-                    '!../javascripts/site.js',
-                    '!../javascripts/lib/*.js',
-                    '../javascripts/custom/*.js',
-                    '../javascripts/plugins/*.js'
-                ],
-                tasks: ['jshint', 'uglify']
-            },
-            stylesheets: {
-                files: [
-                    '../stylesheets/less/**/*.less',
-                    '../stylesheets/less/*.less'
-                ],
-                tasks: ['less']
             }
         }
-    });
+    };
 
+    grunt.initConfig(appConfig);
+
+    // Load plugins
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-contrib-jshint');
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-contrib-less');
-    grunt.registerTask('default', ['less', 'jshint', 'uglify', 'watch']);
+    grunt.loadNpmTasks('grunt-contrib-connect');
+
+    // Register custom task
+    //grunt.registerTask( "default", [ "connect", "watch" ]);
+    grunt.registerTask( 'dev', [ 'tarefa' ] );
+    grunt.registerTask( 'build', [ 'tarefa' ] );
+    grunt.registerTask('default', ['less', 'jshint', 'uglify', 'watch', 'connect']);
+
 };

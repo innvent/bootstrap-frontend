@@ -1,0 +1,58 @@
+{
+    "watch": {
+        "options": {
+            "livereload": true
+        },
+        "css": {
+            "files": "sass/{,*/}*.{scss,sass}",
+            "tasks": "compass"
+        },
+        "js": {
+            "files": "<%= jshint.all %>",
+            "tasks": ["jshint", "uglify"]
+        },
+        "html": {
+            "files": [ "/*.{html,htm,shtml,shtm,xhtml,php,jsp,asp,aspx,erb,ctp}" ]
+        }
+    },
+    "connect": {
+        "server": {
+        "options": {
+                "port": 9000,
+                "base": ".",
+                "hostname": "localhost",
+                "livereload": true,
+                "open": true
+            }
+        }
+    },
+    "jshint": {
+        "options": {
+            "jshintrc": ".jshintrc"
+        },
+        "all": [ "Gruntfile.js", "js/main.js" ]
+    },
+    "uglify": {
+        "options": {
+            "mangle": false
+        },
+        "dist": {
+            "files": {
+                "js/main.min.js": [
+                "js/main.js"
+                ],
+                "js/plugins.min.js": [
+                "js/plugins.js"
+                ]
+            }
+        }
+    },
+    "compass": {
+        "dist": {
+            "options": {
+                "force": true,
+                "config": "config.rb"
+            }
+        }
+    }
+}

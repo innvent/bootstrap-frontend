@@ -17,7 +17,7 @@
     <link rel="author" href="humans.txt">
 
     <!-- Le styles -->
-    <link href="assets/stylesheets/application.css" rel="stylesheet">
+    <link href="assets/stylesheets/style.css" rel="stylesheet">
 
     <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
@@ -35,13 +35,34 @@
 <!--[if lt IE 7]>
     <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
 <![endif]-->
-    <header>
+     <header class="header" role="banner">
+      <div class="logo">
+        <a href="/">
+          <img src="assets/images/logo.svg" alt="Logo">
+        </a>
+      </div>
+      <nav class="nav" role="navigation">
+        <ul>
+          <li>
+            <a href="/"></a>
+          </li>
+        </ul>
+      </nav>
+    </header>
+
+    <main class="main" role="main">
+
         <h1>Title</h1>
         <p>Some paragraph</p>
-    </header>
-    <section>
+    </main>
 
-    </section>
+    <aside class="sidebar" role="complementary">
+
+    </aside>
+
+    <footer class="footer" role="contentinfo">
+
+    </footer>
 
     <!-- Le javascript
     ================================================== -->
@@ -49,6 +70,7 @@
 
     <!-- Developments scripts, clear this line for production -->
     <script src="assets/javascripts/lib/jquery.min.js"></script>
+    <script src="assets/javascripts/lib/angular.min.js"></script>
 
     <!-- Loads Jquery from CDN -->
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
