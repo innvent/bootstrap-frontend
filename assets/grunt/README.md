@@ -2,35 +2,39 @@
 ## Scaffolding
 
 ````
-├── app
-│   ├── apple-touch-icon-precomposed.png
-│   ├── assets
-│   │   ├── css
-│   │   ├── fonts
-│   │   ├── img
-│   │   └── js
-│   ├── favicon.ico
-│   └── index.html
-├── src
-│   ├── js
-│   │   └── scripts.js
-│   └── scss
-│       ├── mixins
-│       ├── modules
-│       ├── partials
-│       ├── vendor
-│       └── style.scss
-├── docs
-├── grunt-build.command
-├── grunt-build.bat
-├── grunt-dev.command
-├── grunt-dev.bat
-├── package.json
-├── README.md
-├── .editorconfig
+├── assets
+│   │
+│   ├── grunt
+│   │   ├── grunt-build.command
+│   │   ├── grunt-build.bat
+│   │   ├── grunt-dev.command
+│   │   ├── grunt-dev.bat
+│   │   ├── grunt-front.command
+│   │   ├── grunt-front.bat
+│   │   ├── GruntFile.js
+│   │   ├── package.json
+│   │   └── README.md
+│   ├── images
+│   │   └── ico
+│   ├── javascripts
+│   │   ├── custom
+│   │   ├── lib
+│   │   └── plugins
+│   └── stylesheets
+│       ├── custom
+│       ├── fonts
+│       └── scss
+│           ├── icons
+│           ├── lib
+│           ├── fonts.less
+│           ├── forms.less
+│           ├── ie.less
+│           ├── imports.less
+│           └── variables.less
 ├── .gitignore
-├── .jshintrc
-└── .travis.yml
+├── humans.txt
+├── index.html
+└── README.md
 ````
 
 
